@@ -21,19 +21,34 @@ const HomePage = () => {
     })();
   }, [productId]);
 
+  const incProductIdHandler = () => {
+    setProductId(productId + 1);
+  };
+  const decProductIdHandler = () => {
+    setProductId(productId - 1);
+  };
+
   return (
     <div className="home-page" id="homePage">
       <Container>
         <Row>
           <Col lg={12}>
             <ButtonGroup>
-              <Button color="danger">Navigate Left...</Button>
+              <Button color="danger" onClick={decProductIdHandler}>
+                Navigate Left...
+              </Button>
               <Button color="warning">{productId}</Button>
-              <Button color="success">Navigate Right...</Button>
+              <Button color="success" onClick={incProductIdHandler}>
+                Navigate Right...
+              </Button>
             </ButtonGroup>
           </Col>
           <Col lg={12}>
-            <p>{JSON.stringify(productData)}</p>
+            {fakeStoreApiError ? (
+              <p>{fakeStoreApiError}</p>
+            ) : (
+              <p>{JSON.stringify(productData)}</p>
+            )}
           </Col>
         </Row>
       </Container>
