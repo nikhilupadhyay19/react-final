@@ -16,6 +16,7 @@ const HomePage = () => {
     (async () => {
       try {
         const data = await getJson(`${fakeStoreApiUrl}/${productId}`);
+
         setProductData(data);
         setProductLoaded(true);
       } catch (err) {
