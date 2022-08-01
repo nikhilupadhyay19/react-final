@@ -3,6 +3,8 @@ import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
 import { fakeStoreApiUrl } from '../../Helpers/config';
 import { getJson } from '../../Helpers/customFn';
 import { ItemList } from '../../components/ItemList/ItemList';
+import { ErrorShown } from '../../components/ErrorShown/ErrorShown';
+import { Loader } from '../../components/Loader/Loader';
 
 const HomePage = () => {
   const [productId, setProductId] = useState(1);
@@ -52,9 +54,9 @@ const HomePage = () => {
           </Col>
           <Col lg={12}>
             {fakeStoreApiError ? (
-              <p>{fakeStoreApiError}</p>
+              <ErrorShown data={fakeStoreApiError} />
             ) : !isProductLoaded ? (
-              <p>Please wait while data has been loaded...</p>
+              <Loader data="Product has been loaded.. Please wait.." />
             ) : (
               <ItemList data={productData} />
             )}
