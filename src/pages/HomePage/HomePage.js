@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
 import { fakeStoreApiUrl } from '../../Helpers/config';
 import { getJson } from '../../Helpers/customFn';
-console.log(getJson, fakeStoreApiUrl);
 
 const HomePage = () => {
   const [productId, setProductId] = useState(1);
@@ -13,16 +12,14 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       try {
-        console.log('useEffect');
-        const data = await getJson('https://fakestoreapi.com/products/1');
-        console.log(data);
+        const data = await getJson(`${fakeStoreApiUrl}/${productId}`);
         setProductData(data);
         setProductLoaded(true);
       } catch (err) {
         setFakeStoreApiError(err);
       }
     })();
-  });
+  }, [productId]);
 
   return (
     <div className="home-page" id="homePage">

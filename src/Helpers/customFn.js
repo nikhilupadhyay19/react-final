@@ -1,3 +1,5 @@
+import { timeoutSec } from './config';
+
 const timeout = (s) => {
   return new Promise((_, reject) => {
     setTimeout(() => {
@@ -8,7 +10,7 @@ const timeout = (s) => {
 
 export const getJson = async (url, errMsg = 'Something went wrong...') => {
   try {
-    const res = await Promise.race([fetch(url), timeout()]);
+    const res = await Promise.race([fetch(url), timeout(timeoutSec)]);
     const data = await res.json();
     if (!res.ok) {
       throw new Error(`${errMsg} ${res.status} ${data.message}`);
