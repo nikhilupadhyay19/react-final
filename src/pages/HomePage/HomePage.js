@@ -22,10 +22,16 @@ const HomePage = () => {
   }, [productId]);
 
   const incProductIdHandler = () => {
-    setProductId(productId + 1);
+    if (productId < 20 && productId > 0) {
+      setProductId(productId + 1);
+      setProductLoaded(false);
+    }
   };
   const decProductIdHandler = () => {
-    setProductId(productId - 1);
+    if (productId > 1) {
+      setProductId(productId - 1);
+      setProductLoaded(false);
+    }
   };
 
   return (
@@ -46,6 +52,8 @@ const HomePage = () => {
           <Col lg={12}>
             {fakeStoreApiError ? (
               <p>{fakeStoreApiError}</p>
+            ) : !isProductLoaded ? (
+              <p>Please wait while data has been loaded...</p>
             ) : (
               <p>{JSON.stringify(productData)}</p>
             )}
