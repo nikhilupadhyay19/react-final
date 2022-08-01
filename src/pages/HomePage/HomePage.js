@@ -13,7 +13,8 @@ const HomePage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await getJson(`${fakeStoreApiUrl}/${productId}`);
+        console.log('useEffect');
+        const data = await getJson('https://fakestoreapi.com/products/1');
         console.log(data);
         setProductData(data);
         setProductLoaded(true);
@@ -21,7 +22,7 @@ const HomePage = () => {
         setFakeStoreApiError(err);
       }
     })();
-  }, [productId]);
+  });
 
   return (
     <div className="home-page" id="homePage">
