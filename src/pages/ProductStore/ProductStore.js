@@ -10,7 +10,7 @@ const ProductStore = () => {
   const [productId, setProductId] = useState(1);
   const [productData, setProductData] = useState([]);
   const [isProductLoaded, setProductLoaded] = useState(false);
-  const [fakeStoreApiError, setFakeStoreApiError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -20,7 +20,7 @@ const ProductStore = () => {
         setProductData(data);
         setProductLoaded(true);
       } catch (err) {
-        setFakeStoreApiError(err);
+        setError(err);
       }
     })();
   }, [productId]);
@@ -55,8 +55,8 @@ const ProductStore = () => {
             </ButtonGroup>
           </Col>
           <Col lg={12}>
-            {fakeStoreApiError ? (
-              <ErrorShown data={fakeStoreApiError} />
+            {error ? (
+              <ErrorShown data={error} />
             ) : !isProductLoaded ? (
               <Loader data="Product has been loaded.. Please wait.." />
             ) : (
