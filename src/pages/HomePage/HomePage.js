@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
 import { fakeStoreApiUrl } from '../../Helpers/config';
 import { getJson } from '../../Helpers/customFn';
+console.log(getJson, fakeStoreApiUrl);
 
 const HomePage = () => {
   const [productId, setProductId] = useState(1);
@@ -13,6 +14,7 @@ const HomePage = () => {
     (async () => {
       try {
         const data = await getJson(`${fakeStoreApiUrl}/${productId}`);
+        console.log(data);
         setProductData(data);
         setProductLoaded(true);
       } catch (err) {
