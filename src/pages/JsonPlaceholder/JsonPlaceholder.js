@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
+import { jsonPlaceholderUrl } from '../../Helpers/config';
 
 const JsonPlaceholder = () => {
+  const [param, setPram] = useState();
   return (
     <div className="json-placeholder">
       <Container>
@@ -9,9 +11,12 @@ const JsonPlaceholder = () => {
           <Col lg={12}>
             <p>JsonPlaceholder....</p>
             <ButtonGroup>
-              <Button>Left</Button>
-              <Button>Middle</Button>
-              <Button>Right</Button>
+              <Button>posts</Button>
+              <Button>comments</Button>
+              <Button>albums</Button>
+              <Button>photos</Button>
+              <Button>todos</Button>
+              <Button>users</Button>
             </ButtonGroup>
           </Col>
         </Row>
